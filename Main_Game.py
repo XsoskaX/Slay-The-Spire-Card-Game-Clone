@@ -35,7 +35,7 @@ def rand_num():
 def pick_cards():
     card_picked =[]
     for x in range(4):
-        card_picked.append(cardss[rand_num()].type)
+        card_picked.append(cardss[rand_num()])
         # print(card_picked[x])
     return card_picked
 
@@ -49,15 +49,7 @@ def player_choise():
     print("Please Choose a card _________________")
     b = 1
     for x  in a :
-
-        if(x=="block1"):
-            print(b,block_card1.Show_card_info())
-        elif(x=="block2"):
-            print(b,block_card2.Show_card_info())
-        elif (x == "attack1"):
-            print(b,attack_card1.Show_card_info())
-        else:
-            print(b,attack_card2.Show_card_info())
+        print(b,x.Show_card_info())
         b+=1
     return a
 
@@ -66,7 +58,7 @@ def player_choise():
 def player_picking(cards_choosen):
     p1_choose =input("please enter a card number ")
     if(p1_choose=="1"):
-        print(cards_choosen[0])
-        print("hello")
+        print(cards_choosen[0].Show_card_info())
+        
 
 player_picking(player_choise())
