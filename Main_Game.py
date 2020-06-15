@@ -3,62 +3,72 @@ from Cards import Cards
 from Enemy import Enemies
 import random
 playerOne= Player("hassan",150,0,0,True)
-enemy_one = Enemies("punisher",20,3,False)
-attack_card1 = Cards("attack1",1,6,0)
-attack_card2 = Cards("attack2",1,9,0)
-block_card1 = Cards("block1",1,5,0)
-block_card2 = Cards("block2",1,8,0)
+
+
+#enemies beta type 
+enemy_one = Enemies("Dawnsoul",15,8,False)
+enemy_two = Enemies("slayer",25,5,False)
+enemy_three = Enemies("Mage",10,10,False)
+enemy_four = Enemies("The Icy Hag",30,2,False)
+enemies_array = [enemy_one,enemy_two,enemy_three,enemy_four]
+enemies_dictionary={
+    "Dawnsoul":enemies_array[0],
+    "Slayer":enemies_array[1],
+    "Mage":enemies_array[2],
+    "The Icy Hag":enemies_array[3]
+}
+
+
+#card choices
+attack_card1 = Cards("Melting Kiss",1,6,0)
+attack_card2 = Cards("Wild Nova",1,9,0)
+block_card1 = Cards("Dragon Flash",1,0,5)
+block_card2 = Cards("ice Sheild",1,0,8)
 cardss= [attack_card1,attack_card2,block_card1,block_card2]
 eny = {
-  "slash"  : attack_card1,
-  "bash"   : attack_card2,
-  "protect": block_card1,
-  "guard"  : block_card2
+  "Melting Kiss": cardss[0],
+  "Wild Nova"   : cardss[1],
+  "Dragon Flash": cardss[2],
+  "ice Sheild"  : cardss[3]
 }
-# def attack (a,b):
-#
-#     playerOne.damage=a
-#     e = b - playerOne.damage
-#     if(playerOne.turn):
-#         print(playerOne.damage)
-#         print(b)
-#         print(e)
-#
-# attack(attack_card1.damage,enemy_one.health)
 
-
-
+#pick random enemie
+def rand_enemy():
+    return random.randint(0, 3)
+    
+# Random number for picking Hand cards
 def rand_num():
     return random.randint(0, 3)
 
-
+# picking the card return array with cards 
 def pick_cards():
-    card_picked =[]
+    card_picked =[]    #This_array_contain_random_cards
     for x in range(4):
         card_picked.append(cardss[rand_num()])
-        # print(card_picked[x])
     return card_picked
+# it gets the card name from to use with dictionary
+def get_cards_names(card_array):
+    card_array_name=[]
+    for x in card_array:
+        card_array_name.append(x.type)
+    return card_array_name
 
-# print(pick_cards())
+# it show the player the card chosen
+def show_player_cards(cards_selected):
+    y = 1
+    for x in cards_selected:
+        print(y,"\n")
+        x.Show_card_info()
+        print("******************************\n")
+        y+=1
+
+show_player_cards(pick_cards())
+
+# nyn = get_cards_names(pick_cards())
+# print(nyn)
+
+#prompt the hand card info to the player
+# def player_picking():
+#     choise = input()
 
 
-
-
-def player_choise():
-    a = pick_cards()
-    print("Please Choose a card _________________")
-    b = 1
-    for x  in a :
-        print(b,x.Show_card_info())
-        b+=1
-    return a
-
-
-
-def player_picking(cards_choosen):
-    p1_choose =input("please enter a card number ")
-    if(p1_choose=="1"):
-        print(cards_choosen[0].Show_card_info())
-        
-
-player_picking(player_choise())
